@@ -1,0 +1,15 @@
+body {
+  font-size: 12px;
+}
+
+p {
+  font-size: 1em
+}
+/* All Styling for .unregistered */
+.unregistered {
+  margin: auto;
+}
+
+.unregistered form {
+  display: block;
+}
