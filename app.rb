@@ -1,4 +1,6 @@
 require 'sinatra'
+# For local hosting and testing
+require 'sinatra/reloader'
 require 'pg'
 
 require_relative 'db_config'
@@ -19,5 +21,18 @@ helpers do
 end
 
 get '/' do
-  erb :index
+  if !logged_in?
+    erb :index
+  else
+
+    erb :user_home
+  end
+end
+
+get '/login' do
+
+end
+
+get '/signup' do
+  
 end
