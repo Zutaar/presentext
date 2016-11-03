@@ -7,6 +7,10 @@ body {
 p {
   font-size: 1em
 }
+
+label {
+  display: block;
+}
 /* All Styling for .unregistered */
 .unregistered {
   margin: auto;
@@ -16,7 +20,7 @@ p {
   display: block;
 }
 
-/* Styling for top menu bar after the user has logged*/
+/* Styling for top menu bar after the user has logged in */
 .top {
 
 }
@@ -33,7 +37,7 @@ p {
   float: left;
 }
 
-.top li a, .top li form {
+.top li a, .top li span, .top li form {
   display: block;
   color: white;
   text-align: center;
