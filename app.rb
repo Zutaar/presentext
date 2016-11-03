@@ -95,7 +95,7 @@ post '/new' do
 
   slideshow.save
 
-  redirect to "/#{slideshow.id}"
+  redirect to "/slideshow?id=#{slideshow.id}"
 end
 
 get '/slideshow' do
@@ -124,4 +124,10 @@ post '/edit' do
   slideshow.update(title: params[:title], content: params[:content])
 
   redirect to "/slideshow?id=#{slideshow.id}"
+end
+
+delete '/delete' do
+  slideshow = current_slideshow
+  slideshow.destroy
+  redirect to '/'
 end
