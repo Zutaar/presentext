@@ -1,5 +1,7 @@
 body {
-  font-size: 12px;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 20px;
 }
 
 p {
@@ -12,4 +14,29 @@ p {
 
 .unregistered form {
   display: block;
+}
+
+/* Styling for top menu bar after the user has logged*/
+.top {
+
+}
+
+.top ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.top li {
+  float: left;
+}
+
+.top li a, .top li form {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
