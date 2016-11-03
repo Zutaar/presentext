@@ -26,15 +26,18 @@ end
 
 get '/' do
   if logged_in?
+    @slideshows = Slideshow.where(user_id: current_user.id)
+
 
     erb :user_home
-
   else
 
     erb :index
 
   end
 end
+
+# User related stuff
 
 get '/signup' do
   erb :signup
@@ -61,12 +64,10 @@ post '/login' do
   user = User.find_by(email: params[:email])
 
   if user && user.authenticate(params[:password])
-    # you are fine
     session[:user_id] = user.id
 
     redirect to '/'
   else
-    # who are you
     erb :session_new
   end
 end
@@ -75,4 +76,23 @@ get '/signout' do
   session[:user_id] = nil
 
   redirect to '/'
+end
+
+# Slideshow related stuff
+
+get '/new' do
+  erb :new_slideshow
+end
+
+post '/new' do
+  slideshow = Slideshow.new(user_id: current_user.id, title: params[:title], content: params[:content])
+
+  slideshow.save
+
+  redirect to '/'
+  # redirect to "/edit/#{slideshow.id}"
+end
+
+get '/edit/:id' do
+
 end
