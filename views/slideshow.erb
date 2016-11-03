@@ -1,0 +1,18 @@
+<%=@slideshow.title%>
+
+<form action="/present" method="get">
+  <button>Present</button>
+</form>
+
+<%@slides.each do |slide|%>
+<p><%=slide%></p>
+<%end%>
+
+<form action="/edit" method="get">
+  <button>Edit</button>
+</form>
+
+<form action="/delete" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button>Delete</button>
+</form>
