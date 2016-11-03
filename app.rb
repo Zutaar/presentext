@@ -22,10 +22,16 @@ helpers do
   def current_user
     User.find_by(id: session[:user_id])
   end
+
+  def current_slideshow
+    Slideshow.find_by(id: session[:slideshow_id])
+  end
 end
 
 get '/' do
   if logged_in?
+    session[:slideshow_id] = nil
+
     @slideshows = Slideshow.where(user_id: current_user.id)
 
 
@@ -89,10 +95,33 @@ post '/new' do
 
   slideshow.save
 
-  redirect to '/'
-  # redirect to "/edit/#{slideshow.id}"
+  redirect to "/#{slideshow.id}"
 end
 
-get '/edit/:id' do
+get '/slideshow' do
+    session[:slideshow_id] = params[:id]
 
+
+  @slideshow = current_slideshow
+
+  @slides = @slideshow.content.split(/[\r\n]+/)
+
+  # binding.pry
+
+  erb :slideshow
+end
+
+get '/edit' do
+
+  @slideshow = current_slideshow
+
+
+  erb :slideshow_edit
+end
+
+post '/edit' do
+  slideshow = current_slideshow
+  slideshow.update(title: params[:title], content: params[:content])
+
+  redirect to "/slideshow?id=#{slideshow.id}"
 end
