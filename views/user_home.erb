@@ -1,4 +1,4 @@
 <p><a href="/new">New Slideshow</a></p>
 <% @slideshows.each do |slideshow| %>
-<p><a href="/<%slideshow.title%>"></a><%= slideshow['title'] %></p>
+<p><a href="/<%=slideshow.title%>"><%= slideshow['title'] %></a></p>
 <% end %>
