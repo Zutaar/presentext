@@ -58,5 +58,21 @@ get '/login' do
 end
 
 post '/login' do
+  user = User.find_by(email: params[:email])
 
+  if user && user.authenticate(params[:password])
+    # you are fine
+    session[:user_id] = user.id
+
+    redirect to '/'
+  else
+    # who are you
+    erb :session_new
+  end
+end
+
+get '/signout' do
+  session[:user_id] = nil
+
+  redirect to '/'
 end
