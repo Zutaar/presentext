@@ -3,21 +3,22 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/style.css">
-    <title>TxtShow</title>
+    <title>PresenText</title>
   </head>
   <body>
-  <%if logged_in?%>
-    <div class="top">
-      <ul>
-        <li><a href="/">PresenText</a></li>
+  <div class="top">
+    <ul>
+      <li><a href="/">PresenText</a></li>
+      <%if logged_in?%>
         <li><form action="/search" method="get">
           <input type="text" name="search">
         </form></li>
         <li style="float:right;"><a href="/signout">Sign out</a></li>
+        <li style="float:right;"><span><%=current_user.email%></span></li>
+        <%end%>
       </ul>
-    </div>
+  </div>
 
-  <%end%>
   <div>
     <%= yield %>
   </div>
