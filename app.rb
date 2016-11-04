@@ -26,11 +26,16 @@ helpers do
   def current_slideshow
     Slideshow.find_by(id: session[:slideshow_id])
   end
+
+  def reset_slideshow
+    session[:slideshow_id] = nil
+    session[:slide_number] = nil
+  end
 end
 
 get '/' do
   if logged_in?
-    session[:slideshow_id] = nil
+    reset_slideshow
 
     @slideshows = Slideshow.where(user_id: current_user.id)
 
@@ -79,6 +84,7 @@ post '/login' do
 end
 
 get '/signout' do
+  reset_slideshow
   session[:user_id] = nil
 
   redirect to '/'
@@ -99,7 +105,7 @@ post '/new' do
 end
 
 get '/slideshow' do
-    session[:slideshow_id] = params[:id]
+  session[:slideshow_id] = params[:id]
 
 
   @slideshow = current_slideshow
@@ -130,4 +136,12 @@ delete '/delete' do
   slideshow = current_slideshow
   slideshow.destroy
   redirect to '/'
+end
+
+# Present the slideshow code
+get '/slideshow/present' do
+  @slides =
+ current_slideshow.content.split(/[\r\n]+/)
+
+  erb :slideshow_present
 end

@@ -1,0 +1,77 @@
+<div>
+  <form action="/slideshow" method="get">
+    <input type="hidden" name="id" value="<%=current_slideshow.id%>">
+    <button>Back</button>
+  </form>
+</div>
+
+<div id="display_text">
+  <p><%= @slides[0]%></p>
+  </div>
+
+<div class="presentation">
+  <button id="prev_page">Previous</button>
+  <button id="fullscreen">Fullscreen</button>
+  <button id="next_page">Next</button>
+</div>
+
+<div style="display:none;" class="presentation_full">
+  <%= current_slideshow.content %>
+</div>
+
+
+<script type="text/javascript">
+    var current_slide = 0
+
+    var p = []
+    <% @slides.each do |s| %>
+    p.push("<%= s %>")
+    <%end%>
+
+    console.log(p)
+
+    $('#display_text').click(function() {
+      if (current_slide < p.length-1) {
+        current_slide++;
+      } else {
+        if (document.webkitFullscreenElement != null) {
+          document.webkitExitFullscreen();
+        }
+      }
+      $(this).html('<p>'+p[current_slide]+'</p>')
+
+    });
+    $('#next_page').click(function() {
+      if (current_slide < p.length-1) {
+        current_slide++;
+      }
+      if (document.getElementById('display_text').fullscreenElement) {
+        document.getElementById('display_text').webkitExitFullscreen();
+      }
+      $('#display_text').html('<p>'+p[current_slide]+'</p>')
+    });
+
+
+    $('#prev_page').click(function() {
+      if (current_slide>= 0) {
+        current_slide--;
+      }
+      $('#display_text').html('<p>'+p[current_slide]+'</p>')
+    });
+</script>
+
+<script type="text/javascript">
+  // For going full screen
+
+  $('#fullscreen').click(function() {
+    if(document.getElementById('display_text').requestFullscreen) {
+      document.getElementById('display_text').requestFullscreen();
+    } else if(document.getElementById('display_text').mozRequestFullScreen) {
+      document.getElementById('display_text').mozRequestFullScreen();
+    } else if(document.getElementById('display_text').webkitRequestFullscreen) {
+      document.getElementById('display_text').webkitRequestFullscreen();
+    } else if(document.getElementById('display_text').msRequestFullscreen) {
+      document.getElementById('display_text').msRequestFullscreen();
+    }
+  })
+</script>
