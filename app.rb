@@ -1,6 +1,6 @@
 require 'sinatra'
 # For local hosting and testing
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'pg'
 
 
