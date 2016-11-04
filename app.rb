@@ -2,8 +2,7 @@ require 'sinatra'
 # For local hosting and testing
 require 'sinatra/reloader'
 require 'pg'
-# for testing single commands
-require 'pry'
+
 
 require_relative 'db_config'
 require_relative 'models/user'
@@ -29,13 +28,12 @@ helpers do
 
   def reset_slideshow
     session[:slideshow_id] = nil
-    session[:slide_number] = nil
   end
 end
 
 get '/' do
+  reset_slideshow
   if logged_in?
-    reset_slideshow
 
     @slideshows = Slideshow.where(user_id: current_user.id)
 
@@ -43,7 +41,7 @@ get '/' do
     erb :user_home
   else
 
-    erb :index
+    erb :login
 
   end
 end
@@ -127,7 +125,7 @@ end
 
 post '/edit' do
   slideshow = current_slideshow
-  slideshow.update(title: params[:title], content: params[:content])
+  slideshow.update(content: params[:content])
 
   redirect to "/slideshow?id=#{slideshow.id}"
 end

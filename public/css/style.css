@@ -1,7 +1,10 @@
+
 body {
   width: 90%;
   margin: 0 auto;
   font-size: 20px;
+  height:100%;
+  background-color: #EEE;
 }
 
 p {
@@ -11,25 +14,64 @@ p {
 label {
   display: block;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+a:visited {
+  text-decoration: none
+  color:inherit
+}
+
+.welcome {
+  text-align: center;
+  font-size: 3em;
+}
+
+.close {
+
+}
+.slideshows {
+  padding:5px;
+  margin:10px;
+  text-decoration: none;
+  color:blue
+}
+
+.slideshows a:visited{
+  color:inherit;
+}
+
 /* All Styling for .unregistered */
 .unregistered {
   margin: auto;
+  font-size: 2em
 }
 
 .unregistered form {
   display: block;
+  text-align: center;
 }
 
+.unregistered input{
+  padding: 1em;
+  width: 80%
+}
+
+.unregistered button {
+  display: block;
+  margin: 10px auto;
+}
 /* Styling for top menu bar after the user has logged in */
 .top {
 
 }
 
 .top ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
   background-color: #333;
 }
 
@@ -43,4 +85,42 @@ label {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+
+.back {
+  text-align: center;
+}
+
+.back button {
+  margin: 10px 10px;
+  padding: 1vh;
+  font-size: 1em;
+}
+
+#display_text {
+  margin: 10px auto;
+  background-color: #333;
+  height:60vh;
+  width:60%;
+  color: white;
+
+  text-align: center;
+}
+
+#display_text > p {
+  position: absolute;
+  top: 50%;
+  left:0;
+  right:0;
+  margin-top: -2em;
+}
+
+.presentation {
+  text-align: center;
+}
+
+.presentation button {
+  margin: 0 10px;
+  padding: 1vh;
+  font-size: 1em;
 }

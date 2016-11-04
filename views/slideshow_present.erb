@@ -1,4 +1,4 @@
-<div>
+<div class="back">
   <form action="/slideshow" method="get">
     <input type="hidden" name="id" value="<%=current_slideshow.id%>">
     <button>Back</button>
@@ -7,18 +7,13 @@
 
 <div id="display_text">
   <p><%= @slides[0]%></p>
-  </div>
+</div>
 
 <div class="presentation">
   <button id="prev_page">Previous</button>
   <button id="fullscreen">Fullscreen</button>
   <button id="next_page">Next</button>
 </div>
-
-<div style="display:none;" class="presentation_full">
-  <%= current_slideshow.content %>
-</div>
-
 
 <script type="text/javascript">
     var current_slide = 0
@@ -53,7 +48,7 @@
 
 
     $('#prev_page').click(function() {
-      if (current_slide>= 0) {
+      if (current_slide > 0) {
         current_slide--;
       }
       $('#display_text').html('<p>'+p[current_slide]+'</p>')

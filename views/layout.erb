@@ -12,11 +12,14 @@
     <ul>
       <li><a href="/">PresenText</a></li>
       <%if logged_in?%>
-        <li><form action="/search" method="get">
+        <!-- <li><form action="/search" method="get">
           <input type="text" name="search">
-        </form></li>
+        </form></li> -->
         <li style="float:right;"><a href="/signout">Sign out</a></li>
         <li style="float:right;"><span><%=current_user.email%></span></li>
+        <%else %>
+          <li style="float:right;"><a href="/login">Log In</a></li>
+          <li style="float:right;"><a href="/signup">Sign Up</a></li>
         <%end%>
       </ul>
   </div>
