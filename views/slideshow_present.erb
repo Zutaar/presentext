@@ -6,7 +6,9 @@
 </div>
 
 <div id="display_text">
-  <p><%= @slides[0]%></p>
+  <div id="text_wrapper">
+    <span><%= @slides[0].join("</span><span>")%></span>
+  </div>
 </div>
 
 <div class="presentation">
@@ -16,11 +18,12 @@
 </div>
 
 <script type="text/javascript">
+    // Sets the current slide to
     var current_slide = 0
 
     var p = []
     <% @slides.each do |s| %>
-    p.push("<%= s %>")
+    p.push(<%= s %>.reduce( (a,b) => a + ("<span>"+b+"</span>"), '') )
     <%end%>
 
     console.log(p)
@@ -33,7 +36,7 @@
           document.webkitExitFullscreen();
         }
       }
-      $(this).html('<p>'+p[current_slide]+'</p>')
+      $('#text_wrapper').html(p[current_slide])
 
     });
     $('#next_page').click(function() {
@@ -43,7 +46,7 @@
       if (document.getElementById('display_text').fullscreenElement) {
         document.getElementById('display_text').webkitExitFullscreen();
       }
-      $('#display_text').html('<p>'+p[current_slide]+'</p>')
+      $('#text_wrapper').html(p[current_slide])
     });
 
 
@@ -51,7 +54,7 @@
       if (current_slide > 0) {
         current_slide--;
       }
-      $('#display_text').html('<p>'+p[current_slide]+'</p>')
+      $('#text_wrapper').html(p[current_slide])
     });
 </script>
 

@@ -2,7 +2,9 @@ require 'sinatra'
 # For local hosting and testing
 require 'sinatra/reloader'
 require 'pg'
-
+require 'pry'
+# redcarpet for rendering to html
+require 'redcarpet'
 
 require_relative 'db_config'
 require_relative 'models/user'
@@ -108,7 +110,7 @@ get '/slideshow' do
 
   @slideshow = current_slideshow
 
-  @slides = @slideshow.content.split(/[\r\n]+/)
+  @slides = @slideshow.content.split(/\r?\n[\r?\n]+/)
 
   # binding.pry
 
@@ -138,8 +140,14 @@ end
 
 # Present the slideshow code
 get '/slideshow/present' do
-  @slides =
- current_slideshow.content.split(/[\r\n]+/)
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+  @slides = current_slideshow.content.split(/\r?\n[\r?\n]+/)
+
+  @slides.collect! { |x| markdown.render(x) }
+
+
+  @slides.collect! { |x| x.split (/\n/) }
+
 
   erb :slideshow_present
 end

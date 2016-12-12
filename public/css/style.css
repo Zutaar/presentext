@@ -8,7 +8,7 @@ body {
 }
 
 p {
-  font-size: 1em
+  font-size: 1em;
 }
 
 label {
@@ -39,7 +39,7 @@ a:visited {
   padding:5px;
   margin:10px;
   text-decoration: none;
-  color:blue
+  color:blue;
 }
 
 .slideshows a:visited{
@@ -72,7 +72,7 @@ a:visited {
 }
 
 .top ul {
-  background-color: #333;
+  background-color: #333333;
 }
 
 .top li {
@@ -104,15 +104,8 @@ a:visited {
   width:60%;
   color: white;
 
-  text-align: center;
-}
-
-#display_text > p {
-  position: absolute;
-  top: 50%;
-  left:0;
-  right:0;
-  margin-top: -2em;
+  display: flex;
+  justify-content: center;
 }
 
 .presentation {
@@ -123,4 +116,13 @@ a:visited {
   margin: 0 10px;
   padding: 1vh;
   font-size: 1em;
+}
+
+#text_wrapper {
+  align-self: center;
+  text-align: center;
+}
+
+span {
+  display: block;
 }
