@@ -21,7 +21,7 @@
     // Sets the current slide to
     var current_slide = 0
 
-    var p = []
+    var p = [];
     <% @slides.each do |s| %>
     p.push(<%= s %>.reduce( (a,b) => a + ("<span>"+b+"</span>"), '') )
     <%end%>
